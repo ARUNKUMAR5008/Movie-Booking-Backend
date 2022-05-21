@@ -5,6 +5,10 @@
   "dependencies": {
     "@material-ui/core": "^3.0.3",
     "@material-ui/icons": "^3.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-modal": "^3.5.1",
@@ -18,5 +22,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARUNKUMAR5008/Movie-Booking-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ARUNKUMAR5008/Movie-Booking-Backend/issues"
+  },
+  "homepage": "https://github.com/ARUNKUMAR5008/Movie-Booking-Backend#readme"
 }
