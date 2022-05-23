@@ -1,8 +1,8 @@
 const { isEmail } = require("validator");
 module.exports = (mongoose) => {
-  const UserSchema = mongoose.Schema({
+  const userSchema = mongoose.Schema({
       userid: {
-        type: Number,
+        type: String,
         unique: true,
         required: true,
       },

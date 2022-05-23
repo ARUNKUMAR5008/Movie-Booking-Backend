@@ -1,51 +1,51 @@
-import React, { Component } from 'react';
-import './Home.css';
-import Header from '../../common/header/Header';
-import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import FormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Checkbox from '@material-ui/core/Checkbox';
-import ListItemText from '@material-ui/core/ListItemText';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React, { Component } from "react";
+import "./Home.css";
+import Header from "../../common/header/Header";
+import { withStyles } from "@material-ui/core/styles";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import FormControl from "@material-ui/core/FormControl";
+import Typography from "@material-ui/core/Typography";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Checkbox from "@material-ui/core/Checkbox";
+import ListItemText from "@material-ui/core/ListItemText";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.paper
+        backgroundColor: theme.palette.background.paper,
     },
     upcomingMoviesHeading: {
-        textAlign: 'center',
-        background: '#ff9999',
-        padding: '8px',
-        fontSize: '1rem'
+        textAlign: "center",
+        background: "#ff9999",
+        padding: "8px",
+        fontSize: "1rem",
     },
     gridListUpcomingMovies: {
-        flexWrap: 'nowrap',
-        transform: 'translateZ(0)',
-        width: '100%'
+        flexWrap: "nowrap",
+        transform: "translateZ(0)",
+        width: "100%",
     },
     gridListMain: {
-        transform: 'translateZ(0)',
-        cursor: 'pointer'
+        transform: "translateZ(0)",
+        cursor: "pointer",
     },
     formControl: {
         margin: theme.spacing.unit,
         minWidth: 240,
-        maxWidth: 240
+        maxWidth: 240,
     },
     title: {
         color: theme.palette.primary.light,
-    }
+    },
 });
 
 class Home extends Component {
@@ -61,8 +61,8 @@ class Home extends Component {
             genresList: [],
             artistsList: [],
             releaseDateStart: "",
-            releaseDateEnd: ""
-        }
+            releaseDateEnd: "",
+        };
     }
 
     componentWillMount() {
@@ -75,7 +75,7 @@ class Home extends Component {
             if (this.readyState === 4) {
                 debugger;
                 that.setState({
-                    upcomingMovies: JSON.parse(this.responseText).movies
+                    upcomingMovies: JSON.parse(this.responseText),
                 });
             }
         });
@@ -90,7 +90,7 @@ class Home extends Component {
         xhrReleased.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({
-                    releasedMovies: JSON.parse(this.responseText).movies
+                    releasedMovies: JSON.parse(this.responseText),
                 });
             }
         });
@@ -105,7 +105,7 @@ class Home extends Component {
         xhrGenres.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({
-                    genresList: JSON.parse(this.responseText).genres
+                    genresList: JSON.parse(this.responseText),
                 });
             }
         });
@@ -120,7 +120,7 @@ class Home extends Component {
         xhrArtists.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({
-                    artistsList: JSON.parse(this.responseText).artists
+                    artistsList: JSON.parse(this.responseText),
                 });
             }
         });
@@ -130,30 +130,30 @@ class Home extends Component {
         xhrArtists.send(dataArtists);
     }
 
-    movieNameChangeHandler = event => {
+    movieNameChangeHandler = (event) => {
         this.setState({ movieName: event.target.value });
-    }
+    };
 
-    genreSelectHandler = event => {
+    genreSelectHandler = (event) => {
         this.setState({ genres: event.target.value });
-    }
+    };
 
-    artistSelectHandler = event => {
+    artistSelectHandler = (event) => {
         this.setState({ artists: event.target.value });
-    }
+    };
 
-    releaseDateStartHandler = event => {
+    releaseDateStartHandler = (event) => {
         this.setState({ releaseDateStart: event.target.value });
-    }
+    };
 
-    releaseDateEndHandler = event => {
+    releaseDateEndHandler = (event) => {
         this.setState({ releaseDateEnd: event.target.value });
-    }
+    };
 
     movieClickHandler = (id) => {
         //Changed /movie/id to /movies/id 
-        this.props.history.push('movie/' + id);
-    }
+        this.props.history.push("movie/" + id);
+    };
 
     filterApplyHandler = () => {
         let queryString = "?status=RELEASED";
@@ -179,7 +179,7 @@ class Home extends Component {
         xhrFilter.addEventListener("readystatechange", function () {
             if (this.readyState === 4) {
                 that.setState({
-                    releasedMovies: JSON.parse(this.responseText).movies
+                    releasedMovies: JSON.parse(this.responseText),
                 });
             }
         });
@@ -187,7 +187,7 @@ class Home extends Component {
         xhrFilter.open("GET", this.props.baseUrl + "movies" + encodeURI(queryString));
         xhrFilter.setRequestHeader("Cache-Control", "no-cache");
         xhrFilter.send(dataFilter);
-    }
+    };
 
     render() {
         const { classes } = this.props;
@@ -200,7 +200,7 @@ class Home extends Component {
                 </div>
 
                 <GridList cols={5} className={classes.gridListUpcomingMovies} >
-                    {this.state.upcomingMovies.map(movie => (
+                    {this.state.upcomingMovies.map((movie) => (
                         <GridListTile key={"upcoming" + movie._id}>
                             <img src={movie.poster_url} className="movie-poster" alt={movie.title} />
                             <GridListTileBar title={movie.title} />
@@ -211,12 +211,12 @@ class Home extends Component {
                 <div className="flex-container">
                     <div className="left">
                         <GridList cellHeight={350} cols={4} className={classes.gridListMain}>
-                            {this.state.releasedMovies.map(movie => (
+                            {this.state.releasedMovies.map((movie )=> (
                                 <GridListTile onClick={() => this.movieClickHandler(movie.movieid)} className="released-movie-grid-item" key={"grid" + movie._id}>
                                     <img src={movie.poster_url} className="movie-poster" alt={movie.title} />
                                     <GridListTileBar
                                         title={movie.title}
-                                        subtitle={<span>Release Date: {new Date(movie.release_date).toDateString()}</span>}
+                                        subtitle={<span>Release Date:{" "} {new Date(movie.release_date).toDateString()}</span>}
                                     />
                                 </GridListTile>
                             ))}
@@ -241,11 +241,11 @@ class Home extends Component {
                                     <Select
                                         multiple
                                         input={<Input id="select-multiple-checkbox-genre" />}
-                                        renderValue={selected => selected.join(',')}
+                                        renderValue={(selected) => selected.join(',')}
                                         value={this.state.genres}
                                         onChange={this.genreSelectHandler}
                                     >
-                                        {this.state.genresList.map(genre => (
+                                        {this.state.genresList.map((genre )=> (
                                             <MenuItem key={genre.genreid} value={genre.genre}>
                                                 <Checkbox checked={this.state.genres.indexOf(genre.genre) > -1} />
                                                 <ListItemText primary={genre.genre} />
@@ -259,11 +259,11 @@ class Home extends Component {
                                     <Select
                                         multiple
                                         input={<Input id="select-multiple-checkbox" />}
-                                        renderValue={selected => selected.join(',')}
+                                        renderValue={(selected) => selected.join(',')}
                                         value={this.state.artists}
                                         onChange={this.artistSelectHandler}
                                     >
-                                        {this.state.artistsList.map(artist => (
+                                        {this.state.artistsList.map((artist) => (
                                             <MenuItem key={artist.artistid} value={artist.first_name + " " + artist.last_name}>
                                                 <Checkbox checked={this.state.artists.indexOf(artist.first_name + " " + artist.last_name) > -1} />
                                                 <ListItemText primary={artist.first_name + " " + artist.last_name} />
@@ -304,7 +304,7 @@ class Home extends Component {
                     </div>
                 </div>
             </div >
-        )
+        );
     }
 }
 
